@@ -13,7 +13,6 @@ Install node modules:
 
 Set up PostgreSQL with the following credentials:
 
-```json
 type: 'postgres',
 host: 'localhost',
 port: 5432,
