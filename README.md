@@ -30,11 +30,11 @@ database: 'proffyhub'
 4. Create a job post using the company_id and provide the required credentials.
 5. Fetch a list of matching jobs using userId.
 
-## Job Seeker Sills
+## Job Seeker Skills - Sample data
 
 ["python", "javascript", "react.js", "node.js", "java", "sql", "docker", "aws"]
 
-## Job Posts
+## Job Posts - - Sample data
 
 {
   "company_id": 1,
