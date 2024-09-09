@@ -9,11 +9,7 @@ Install Node.js (required version: 20).
 Install node modules:  
 `npm i`
 
-Start application:
-`npm run start:dev`
-
 ## Database Setup
-
 Set up PostgreSQL with the following credentials:
 
 type: 'postgres',
@@ -22,6 +18,9 @@ port: 5432,
 username: 'postgres',
 password: 'postgres',
 database: 'proffyhub'
+
+## Start application:
+`npm run start:dev`
 
 ## Testing Instructions
 
