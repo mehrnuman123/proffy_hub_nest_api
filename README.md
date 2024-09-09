@@ -8,6 +8,8 @@ Clone the repo:
 Install Node.js (required version: 20).  
 Install node modules:  
 `npm i`
+Start application
+`npm run start:dev`
 
 ## Database Setup
 
