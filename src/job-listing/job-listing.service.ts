@@ -45,13 +45,4 @@ export class JobListingService {
         return this.jobListRepo.save(job_listing);
     }
 
-    public async matchJobListing(skills): Promise<JobListing[] | undefined> {
-        console.log(skills, 'data');
-
-        const userSkills = JSON.parse(skills);
-        console.log(userSkills, "user skills ============");
-
-
-        return
-    }
 }

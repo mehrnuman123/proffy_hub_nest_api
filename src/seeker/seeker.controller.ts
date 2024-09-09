@@ -1,37 +1,28 @@
 import { Body, Controller, Get, Inject, Param, Post, Req, Res } from '@nestjs/common';
-import { SeekerService } from './seeker.service';
-import { CreateCompanyDto, CreateSeekerProfileDto } from 'src/dto';
+import { CreateSeekerProfileDto } from 'src/dto';
 import { JobListingService } from 'src/job-listing/job-listing.service';
+import { SeekerService } from './seeker.service';
 
 @Controller('seeker')
 export class SeekerController {
     @Inject(SeekerService)
     private readonly service: SeekerService;
 
-    @Inject(JobListingService)
-    private readonly jobListingService: JobListingService
-
     @Post('/register')
     private async createProfile(@Body() body: CreateSeekerProfileDto, @Res() res, @Req() req) {
         try {
-
             const profile = await this.service.register(body)
             return res.status(201).json({ response: 'Succes, Please remember your registration Id', registration_id: profile.id });
         }
         catch (e) {
             console.log(e);
-
             return res.status(500).json({ message: 'something went wrong' });
         }
     }
 
-    @Get('/job-listing/:id')
-    private async getJobListingByUserId(@Param('id') id: number, @Res() res) {
-
+    @Get('/job-listing/:userId')
+    private async getJobListingByUserId(@Param('userId') id: number, @Res() res) {
         try {
-
-            console.log(id, 'id');
-
             if (isNaN(id)) {
                 return res.status(500).json({ message: 'Id must be number' });
             }
@@ -44,10 +35,10 @@ export class SeekerController {
         }
         catch (e) {
             console.log(e);
+            return res.status(500).json({ message: 'something went wrong' });
 
         }
-        //    const matchSkills = await this.jobListingService.matchJobListing(userProfile.skills)
-
+    
 
     }
 

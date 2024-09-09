@@ -17,7 +17,7 @@ export class JobListingController {
             const profile = await this.service.find(body.company_id)
             if (!profile) return res.status(404).json({ message: 'Company profile does not exist' });
             const job_listing = await this.service.createJobPost(body, profile)
-            return res.status(201).json({ response: 'Job posted successfully !!', Job_Listing: job_listing });
+            return res.status(201).json({ response: 'Job posted successfully !!', JobListing: job_listing });
         }
         catch (e) {
             console.log(e);

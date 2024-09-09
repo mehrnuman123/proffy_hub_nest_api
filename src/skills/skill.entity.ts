@@ -5,14 +5,14 @@ import { Seeker } from '../seeker/seeker.entity';
 @Entity()
 export class Skill {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column({ unique: true })
-  name: string;
+  public name: string;
 
   @ManyToMany(() => JobListing, jobListing => jobListing.requiredSkills)
-  jobListing: JobListing[];
+  public jobListing: JobListing[];
 
   @ManyToMany(() => Seeker, jobSeeker => jobSeeker.skills)
-  jobSeeker: Seeker[];
+  public jobSeeker: Seeker[];
 }

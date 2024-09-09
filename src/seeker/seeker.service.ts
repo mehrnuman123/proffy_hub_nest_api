@@ -21,7 +21,6 @@ export class SeekerService {
     public async register(body: CreateSeekerProfileDto): Promise<Seeker | never> {
         const { name, email, skills } = body;
 
-
         const skillsList: Skill[] = [];
         for (const skillName of skills) {
             let skill = await this.sKillRepo.findOne({ where: { name: skillName } });
@@ -41,12 +40,12 @@ export class SeekerService {
 
 
     public async find(seekerId): Promise<Seeker | undefined> {
-
         return await this.seekerRepo.findOne({
             where: { id: seekerId },
             relations: ['skills'],
         });
     }
+
 
     public async findMatchJobs(skillsArray) {
         const seekerSkills = skillsArray.skills.map(skill => skill.id);
@@ -55,18 +54,18 @@ export class SeekerService {
             relations: ['requiredSkills'],
         });
 
-        const matchingJobs = allJobListings.filter(job => {
+        const matchingJobs = allJobListings.map(job => {
             const requiredSkillIds = job.requiredSkills.map(skill => skill.id);
-            // number of seeker skills
+          
             const matchedSkillsCount = requiredSkillIds.filter(skillId => seekerSkills.includes(skillId)).length;
 
-            // percentage calculation
             const matchPercentage = (matchedSkillsCount / requiredSkillIds.length) * 100;
 
-            
-
-            return matchPercentage >= 51;
-        });
+            return {
+                ...job,
+                match_score: matchPercentage
+            };
+        }).filter(job => job.match_score >= 51); 
 
         return matchingJobs;
     }
